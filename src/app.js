@@ -49,7 +49,9 @@ app.get("/weather", (req, res) => {
     });
   }
 
-  geocode(req.query.address,(error, { latitude = 32, longitude = 32, location } = {}) => {
+  geocode(
+    req.query.address,
+    (error, { latitude = 32, longitude = 32, location } = {}) => {
       if (error) {
         return res.send({ error });
       }
@@ -83,6 +85,7 @@ app.get("*", (req, res) => {
   });
 });
 
-app.listen(3000, () => {
-  console.log("Server is up on port 3000.");
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+  console.log(`Server is up on port ${port}.`);
 });
